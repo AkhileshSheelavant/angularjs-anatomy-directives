@@ -1,27 +1,35 @@
 <html ng-app="myApp">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <body>
-        <div class="container" ng-controller="SimpleController">
-            <h3>Loading Customer List</h3>
-            <ul>
-                <li ng-repeat="cust in customers">
-                    {{ cust.name }} - {{ cust.city }}
-                </li>
-            </ul>
-        </div>
-        <script>
-            var myApp = angular.module("myApp", []);
-            myApp.controller('SimpleController', function($scope, $http) {
-                $http({method: 'GET', url: 'customers.json'}).success(function(data, status) {
-                    // process the data here
-                    $scope.customers = data;
-                }).error(function(data, status) {
-                    // error handling
-                    $scope.customers = [];
-                });
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<body>
+<div class="container" ng-controller="SimpleController">
+    <h3>Customer List</h3>
+    <table border="1px" cellpadding="3px" cellspacing="3px">
+        <th>Name</th>
+        <th>City</th>
+        <tr ng-repeat="cust in customers">
+            <td ng-if="$even" style="background-color: antiquewhite;">{{cust.name}}</td>
+            <td ng-if="$odd" style="background-color:#dcad87;">{{cust.name}}</td>
+            <td ng-if="$even" style="background-color: antiquewhite;">{{cust.city}}</td>
+            <td ng-if="$odd" style="background-color:#dcad87;">{{cust.city}}</td>
+        </tr>
+    </table>
+    <tfoot>Customers Details</tfoot>
+</div>
+<script>
+    var myApp = angular.module("myApp", []);
+    myApp.controller('SimpleController', function($scope, $http) {
+        $http({method: 'GET', url: 'customers.json'})
+            .success(function(data, status) {
+                // process the data here
+                $scope.customers = data;
+            })
+            .error(function(data, status) {
+                // error handling
+                $scope.customers = [];
             });
-        </script>
-    </body>
+    });
+</script>
+</body>
 </html>
 
 <!-- Exercise: Add header and footer to the customer list (by either changing the model object or view template) -->

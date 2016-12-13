@@ -1,17 +1,17 @@
 var demoApp = angular.module('demoApp', ['ngRoute']);
 
-demoApp.factory('simpleFactory', function () {
+demoApp.factory('simpleFactory', function ($http) {
     var factory = {};
-    var customers = [{ name: 'Akhil', city: 'Bengaluru' },
-        { name: 'Ankit', city: 'Mumbai' }];
     factory.getCustomers = function () {
-        return customers;
+        return $http.get('../advanced/customers.json');
     };
     return factory;
 });
 
-demoApp.controller('SimpleController', function ($scope,     simpleFactory) {
-    $scope.customers = simpleFactory.getCustomers();
+demoApp.controller('SimpleController', function ($scope, simpleFactory) {
+    return simpleFactory.getCustomers().then(function (response) {
+        $scope.customers =response.data;
+    });
 });
 
 demoApp.config(function ($routeProvider) {

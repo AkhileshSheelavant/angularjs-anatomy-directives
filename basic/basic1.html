@@ -1,17 +1,20 @@
 <html ng-app="myApp">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script>
-        var myApp = angular.module("myApp", []);
-        myApp.controller('SimpleController', function($scope) {
-            $scope.name = "First Last";
-        });
-    </script>
-    <body>
-        <div class="container" ng-controller="SimpleController">
-            Name: <input type="text" ng-model="name" /> <br />
-            {{ name }}
-        </div>
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+    var myApp = angular.module("myApp", []);
+    myApp.controller('SimpleController', function($scope) {
+        $scope.name = "First Last";
+        $scope.address="My Addr";
+    });
+</script>
+<body>
+<div class="container" ng-controller="SimpleController">
+    Name: <input type="text" ng-model="name" /> <br />
+    {{ name }}<br>
+    Address: <input type="text" ng-model="address"/><br>
+    {{address}}
+</div>
+</body>
 </html>
 
 <!-- Exercise: Add address field to the model, view and controller -->

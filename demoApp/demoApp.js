@@ -1,7 +1,9 @@
 var demoApp = angular.module('demoApp', ['ngRoute']);
 demoApp.controller('SimpleController', function ($scope) {
-    $scope.customers = [{ name: 'Akhil', city: 'Bengaluru' },
-        { name: 'Ankit', city: 'Mumbai' }];
+    $scope.customers =
+        [{ name: 'Akhil', city: 'Bengaluru' },
+            { name: 'Ankit', city: 'Mumbai' }];
+    $scope.nameText="";
 });
 demoApp.config(function ($routeProvider) {
     $routeProvider
